@@ -1,5 +1,11 @@
 package com.data;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * The DataLoader object's job is to take a directory and read in documents from sub folders, where the subfolders are
  * used to denote document class. Example if you point the DataLoader to a folder named documents and there are 2 subfolders in it
@@ -10,4 +16,17 @@ package com.data;
  * To change this template use File | Settings | File Templates.
  */
 public class DataLoader {
+
+    public static Map<String,List<File>> loadDataSet(File dir){
+        File[] fList = dir.listFiles();
+        Map<String,List<File>> dataset = new HashMap<String,List<File>>();
+
+        // generate the cluster classes from the directory structure
+        for(File file : fList){
+            if(file.isDirectory()){
+                dataset.put(file.getName(),new LinkedList<File>());
+            }
+        }
+        return dataset;
+    }
 }
