@@ -1,5 +1,6 @@
 package com.textclustering.kmeans;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -18,7 +19,7 @@ public class KMeans {
     }
 
     // calculates the euclidian distance of a document to the cluster centers
-    public void calc_dist(Vector<Double> doc, List<Vector<Double>> centroids){
+    public int calc_dist(Vector<Double> doc, List<Vector<Double>> centroids){
 
         List<Double> distanceToCentroids = new LinkedList<Double>();
         for(Vector<Double> centroid: centroids){
@@ -38,5 +39,11 @@ public class KMeans {
             distanceToCentroids.add(distance);
         }
 
+        Collections.sort(distanceToCentroids);
+
+        // grab the closest centroid and return its id.
+
+
+       return -1;
     }
 }
