@@ -27,6 +27,16 @@ public class DataLoader {
                 dataset.put(file.getName(),new LinkedList<File>());
             }
         }
+
+        // next open each sub directory and add the files to the map
+
+        for(String classKey :dataset.keySet()){
+
+            File subdir = new File(dir.getAbsolutePath()+"/"+classKey);
+            File[] subdirList = subdir.listFiles();
+            subdirList.toString();
+
+        }
         return dataset;
     }
 }
