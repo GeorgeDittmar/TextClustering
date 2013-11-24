@@ -20,5 +20,8 @@ public class TestDataLoader {
         Map<String,List<File>> data = DataLoader.loadDataSet(new File("src/test/sample-data/dataLoader-test"));
         Assert.assertNotNull(data);
         Assert.assertEquals(data.size(),2);
+
+        Assert.assertEquals(data.get("class1").get(0).getName(),"doc-class1.txt");
+        Assert.assertEquals(data.get("class2").get(0).getName(),"doc-class2.txt");
     }
 }

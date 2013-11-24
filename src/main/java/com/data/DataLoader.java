@@ -34,7 +34,10 @@ public class DataLoader {
 
             File subdir = new File(dir.getAbsolutePath()+"/"+classKey);
             File[] subdirList = subdir.listFiles();
-            subdirList.toString();
+
+            for(File file: subdirList){
+                dataset.get(classKey).add(file);
+            }
 
         }
         return dataset;
