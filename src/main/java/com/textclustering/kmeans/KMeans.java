@@ -20,6 +20,13 @@ public class KMeans {
     }
 
     /**
+     * This method performs the k-means clustering algorithm on the set of vectorized documents.
+     */
+    public void classifyData(List<Vector<Double>> data){
+
+    }
+
+    /**
      * Generate a random cluster center given the dimensionality of the data.
      */
     public Vector<Double> generate_clusters(long dim){

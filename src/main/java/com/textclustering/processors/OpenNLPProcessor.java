@@ -11,7 +11,7 @@ import java.util.List;
  * Time: 7:04 PM
  * To change this template use File | Settings | File Templates.
  */
-public class TFIDFProcessor {
+public class OpenNLPProcessor implements INLPProcessor {
 
     /**
      *
@@ -24,7 +24,7 @@ public class TFIDFProcessor {
     }
 
     public void init(){
-
+        // load up each model to be used in the OpenNLP pipeline
     }
 
 
