@@ -12,9 +12,20 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class TFIDFProcessor {
+
+    /**
+     *
+     * @param documents
+     */
     public static void termvector(List<Document> documents){
 
         // go through each document and create the master term vector
 
     }
+
+    public void init(){
+
+    }
+
+
 }

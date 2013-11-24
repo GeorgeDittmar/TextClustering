@@ -13,10 +13,20 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class KMeans {
+    final int m_numClusters;
 
-    public void KMeans(){
-
+    public KMeans(int m_numClusters) {
+        this.m_numClusters = m_numClusters;
     }
+
+    /**
+     * Generate a random cluster center given the dimensionality of the data.
+     */
+    public Vector<Double> generate_clusters(long dim){
+
+       return null;
+    }
+
 
     // calculates the euclidian distance of a document to the cluster centers
     public int calc_dist(Vector<Double> doc, List<Vector<Double>> centroids){
@@ -24,7 +34,7 @@ public class KMeans {
         List<Double> distanceToCentroids = new LinkedList<Double>();
         for(Vector<Double> centroid: centroids){
             if(doc.size() != centroid.size()){
-                throw new IllegalArgumentException("Document and centroid vectors are not the same size. Some issue has happened" +
+                throw new RuntimeException("Document and centroid vectors are not the same size. Some issue has happened" +
                         "during creation of the vectors.");
             }
             double distance = 0.0;
