@@ -1,6 +1,7 @@
 package com.textclustering.processors;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * The INLPProcessor is an interface to allow for the easy usage of different nlp frameworks such as OpenNLP and StanfordNLP.
@@ -11,6 +12,5 @@ import java.io.File;
  */
 public interface INLPProcessor {
     public void init();
-    public void processDocument(File document);
-    public void tokenize(String document);
+    public void processDocument(File document) throws IOException;
 }
