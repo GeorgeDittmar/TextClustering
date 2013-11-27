@@ -27,7 +27,7 @@ public class TestStopWordsFilter {
 
     @BeforeSuite
     /**
-     * read the document and save it to a string
+     * read the document and save it to a map.
      */
     public void init() throws FileNotFoundException {
         this.dataset = DataLoader.loadDataSet(new File("./src/test/sample-data/dataLoader-test/"));
