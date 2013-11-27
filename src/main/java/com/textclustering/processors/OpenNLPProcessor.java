@@ -26,17 +26,22 @@ public class OpenNLPProcessor implements INLPProcessor {
     private SentenceDetectorME sentenceDetectorME;
     private Tokenizer tokenizer;
 
+    /**
+     * Initialization method for the OpenNLPProcessor to load up any models it may need
+     * for processing document text.
+     * @throws IOException
+     */
     public void init() throws IOException {
         // load up each model to be used in the OpenNLP pipeline. This will be hardcoded for now but should be set using
         //some sort of config
 
-        // init sentence detector model for OpenNLP
+        // init sentence detector model for OpenNLP. these paths are hardcoded and should probably be set by a config file.
         InputStream sentModelIn = new FileInputStream("/src/resources/OpenNLP-models/en-sent.bin");
         SentenceModel sentenceModel = new SentenceModel(sentModelIn);
         sentenceDetectorME = new SentenceDetectorME(sentenceModel);
         sentModelIn.close();
 
-        // init tokenizer model
+        // init tokenizer model. these paths are hardcoded and should probably be set by a config file.
         InputStream tokenModelIn = new FileInputStream("/src/resources/OpenNLP-models/en-token.bin");
         TokenizerModel tokenizerModel = new TokenizerModel(tokenModelIn);
         tokenizer = new TokenizerME(tokenizerModel);
