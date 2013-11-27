@@ -55,8 +55,6 @@ public class StopWordsFilter {
             }
         }
 
-
-
         return filteredResult.toString().trim();
     }
 }

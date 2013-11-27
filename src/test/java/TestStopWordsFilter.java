@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
+ * Unit test of the StopWordsFilter class. Tests that common terms should be removed from an input stream while uncommon terms are kept.
  * User: george
  * Date: 11/24/13
  * Time: 8:51 PM
