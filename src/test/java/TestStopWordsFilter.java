@@ -21,8 +21,8 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class TestStopWordsFilter {
-    private Map<String,List<File>> dataset;
-    private StopWordsFilter stopwords;
+    private Map<String, List<File>> dataset;
+    private StopWordsFilter stopwords = new StopWordsFilter();
 
 
     @BeforeSuite
@@ -30,25 +30,42 @@ public class TestStopWordsFilter {
      * read the document and save it to a string
      */
     public void init() throws FileNotFoundException {
-        this.dataset = DataLoader.loadDataSet(new File("src/test/sample-data/dataLoader-test/"));
-        this.stopwords.loadStopWords(new File("src\\resources\\stopwords.txt"));
+        this.dataset = DataLoader.loadDataSet(new File("./src/test/sample-data/dataLoader-test/"));
+        this.stopwords.loadStopWords(new File("./src/resources/stopwords.txt"));
     }
 
 
+    @Test
+    public void testFilter_1() {
+
+        File tmp = this.dataset.get("class1").get(0);
+
+        try {
+            String doc = FileUtils.readFileToString(tmp, "utf-8");
+            Assert.assertNotNull(doc);
+
+            String newString = this.stopwords.filterStopWords(doc).trim();
+            Assert.assertTrue(newString.equalsIgnoreCase(""));
+
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
 
     @Test
-    public void testFilter(){
+    public void testFilter_2() {
 
-        for(String classLabel: this.dataset.keySet()){
-            File tmp = (File) this.dataset.get(classLabel);
+        File tmp = this.dataset.get("class2").get(0);
 
-            try {
-                String doc = FileUtils.readFileToString(tmp,"utf-8");
+        try {
+            String doc = FileUtils.readFileToString(tmp, "utf-8");
+            Assert.assertNotNull(doc);
 
-            } catch (Exception e) {
-                Assert.fail();
-            }
+            String newString = this.stopwords.filterStopWords(doc).trim();
+            Assert.assertTrue(newString.equalsIgnoreCase("bobby man loved cat. best cat infact!."));
 
+        } catch (Exception e) {
+            Assert.fail();
         }
 
     }

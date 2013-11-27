@@ -5,10 +5,7 @@ import org.apache.commons.io.LineIterator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +18,7 @@ import java.util.regex.Pattern;
  * To change this template use File | Settings | File Templates.
  */
 public class StopWordsFilter {
-    private List<String> m_stopWords = new LinkedList<String>();
+    private Set<String> m_stopWords = new HashSet<String>();
     private StringBuilder regexPattern = new StringBuilder();
     private File m_stopWordsFile;
 
@@ -40,18 +37,26 @@ public class StopWordsFilter {
 
         while(lineIterator.hasNext()){
             String tmp = lineIterator.nextLine();
+            m_stopWords.add(tmp);
         }
     }
 
     /**
-     * Method takes a string of input and filters
+     * Method takes a string of input and filters out the stopwords in the documents
      */
     public String filterStopWords(String doc){
-        StringBuilder stopWordRegex = new StringBuilder();
+        StringBuilder filteredResult = new StringBuilder();
+        StringTokenizer tokenizer = new StringTokenizer(doc," ");
 
-        Pattern stopRegex = Pattern.compile(stopWordRegex.toString());
-        Matcher matcher = stopRegex.matcher(doc);
+        while(tokenizer.hasMoreTokens()){
+            String token = tokenizer.nextToken().toLowerCase();
+            if(!m_stopWords.contains(token)){
+                filteredResult.append(token+" ");
+            }
+        }
 
-        return matcher.replaceAll("");
+
+
+        return filteredResult.toString().trim();
     }
 }
