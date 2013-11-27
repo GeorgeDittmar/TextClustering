@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Document processor that uses the OpenNLP framework to tokenize a document.
  * Created with IntelliJ IDEA.
  * User: george
  * Date: 11/17/13
