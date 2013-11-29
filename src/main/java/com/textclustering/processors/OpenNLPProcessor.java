@@ -36,13 +36,13 @@ public class OpenNLPProcessor implements INLPProcessor {
         //some sort of config
 
         // init sentence detector model for OpenNLP. these paths are hardcoded and should probably be set by a config file.
-        InputStream sentModelIn = new FileInputStream("/src/resources/OpenNLP-models/en-sent.bin");
+        InputStream sentModelIn = new FileInputStream("src/resources/OpenNLP-models/en-sent.bin");
         SentenceModel sentenceModel = new SentenceModel(sentModelIn);
         sentenceDetectorME = new SentenceDetectorME(sentenceModel);
         sentModelIn.close();
 
         // init tokenizer model. these paths are hardcoded and should probably be set by a config file.
-        InputStream tokenModelIn = new FileInputStream("/src/resources/OpenNLP-models/en-token.bin");
+        InputStream tokenModelIn = new FileInputStream("src/resources/OpenNLP-models/en-token.bin");
         TokenizerModel tokenizerModel = new TokenizerModel(tokenModelIn);
         tokenizer = new TokenizerME(tokenizerModel);
     }
