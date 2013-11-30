@@ -42,7 +42,7 @@ public class StopWordsFilter {
     }
 
     /**
-     * Method takes a string of input and filters out the stopwords in the documents returning a list of lists of strings
+     * Method takes a list of string arrays as input and filters out the stopwords that are matched.
      */
     public List<List<String>> filterStopWords(List<String[]> doc){
 
