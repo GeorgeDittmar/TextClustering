@@ -42,19 +42,22 @@ public class StopWordsFilter {
     }
 
     /**
-     * Method takes a string of input and filters out the stopwords in the documents
+     * Method takes a string of input and filters out the stopwords in the documents returning a list of lists of strings
      */
-    public String filterStopWords(String doc){
-        StringBuilder filteredResult = new StringBuilder();
-        StringTokenizer tokenizer = new StringTokenizer(doc," ");
+    public List<List<String>> filterStopWords(List<String[]> doc){
 
-        while(tokenizer.hasMoreTokens()){
-            String token = tokenizer.nextToken().toLowerCase();
-            if(!m_stopWords.contains(token)){
-                filteredResult.append(token+" ");
+        List<List<String>> processedDoc = new LinkedList<List<String>>();
+
+        for(String[] sentence: doc){
+
+            List<String> processedSentence = new LinkedList<String>();
+            for(String word: sentence){
+                if(!m_stopWords.contains(word.toLowerCase())){
+                    processedSentence.add(word);
+                }
             }
+            processedDoc.add(processedSentence);
         }
-
-        return filteredResult.toString().trim();
+        return processedDoc;
     }
 }

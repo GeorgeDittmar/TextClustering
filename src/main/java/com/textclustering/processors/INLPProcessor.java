@@ -15,4 +15,5 @@ import java.util.List;
 public interface INLPProcessor {
     public void init() throws IOException;
     public List<String[]> processDocument(File document) throws IOException;
+    public List<String[]> processDocument(String document);
 }
