@@ -32,7 +32,7 @@ public class DataLoader {
 
         for(String classKey :dataset.keySet()){
 
-            File subdir = new File(dir.getAbsolutePath()+"/"+classKey);
+            File subdir = new File(dir.getAbsolutePath()+File.separatorChar+classKey);
             File[] subdirList = subdir.listFiles();
 
             for(File file: subdirList){

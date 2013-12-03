@@ -3,23 +3,23 @@ package com.textclustering.kmeans;
 import com.data.Document.TextDocument;
 import com.textclustering.IClusterAlg;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 /**
- * Implements the KMeans clustering algorithm for use with text documents.
+ * Implements the KMeans clustering algorithm for use with text documents. The Kmeans class will store
  * User: george
  * Date: 11/17/13
  * Time: 6:55 PM
  * To change this template use File | Settings | File Templates.
  */
 public class KMeans implements IClusterAlg {
+
     final int m_numClusters;
+    private final Map<Integer,List<TextDocument>> clusters;
 
     public KMeans(int m_numClusters) {
         this.m_numClusters = m_numClusters;
+        this.clusters = new HashMap<Integer,List<TextDocument>>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class KMeans implements IClusterAlg {
      *
      * @param doc       the document that needs to be assigned to a cluster.
      * @param centroids list of vectors that we associated the document with.
-     * @return
+     * @return centroid closest to a given document
      * @throws Exception
      */
     public int calc_dist(Vector<Double> doc, List<Vector<Double>> centroids) throws Exception {
