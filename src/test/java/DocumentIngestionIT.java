@@ -82,7 +82,7 @@ public class DocumentIngestionIT {
 //                    Assert.assertTrue(tokenizedDoc.get(0).length == 11);
 //                    Assert.assertTrue(tokenizedDoc.get(1).length == 6);
 //                }
-//                System.out.println("Document tokenized correctly.");
+//                System.out.println("TextDocument tokenized correctly.");
 //            }
 //        }
     }
