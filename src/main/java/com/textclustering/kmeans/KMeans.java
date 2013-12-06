@@ -15,18 +15,24 @@ import java.util.*;
 public class KMeans implements IClusterAlg {
 
     final int m_numClusters;
-    private final Map<Integer,List<TextDocument>> clusters;
+    private final Map<Integer, List<TextDocument>> clusters;
+    private final Map<Integer, Vector<Double>> clusterCenter;
 
     public KMeans(int m_numClusters) {
         this.m_numClusters = m_numClusters;
-        this.clusters = new HashMap<Integer,List<TextDocument>>();
+        this.clusters = new HashMap<Integer, List<TextDocument>>();
+        this.clusterCenter = new HashMap<Integer, Vector<Double>>();
     }
 
     /**
      * This method performs the k-means clustering algorithm on the set of vectorized documents.
      */
-    public void classifyData(List<Vector<Double>> data) {
+    public void classifyData(List<TextDocument> data) throws Exception {
 
+        for (TextDocument document : data) {
+            Vector<Double> documentVector = document.getVectorRepresentation();
+            calc_dist(documentVector, clusterCenter);
+        }
     }
 
     /**
@@ -49,33 +55,41 @@ public class KMeans implements IClusterAlg {
      * @return centroid closest to a given document
      * @throws Exception
      */
-    public int calc_dist(Vector<Double> doc, List<Vector<Double>> centroids) throws Exception {
+    public int calc_dist(Vector<Double> doc, Map<Integer, Vector<Double>> centroids) throws Exception {
 
-        List<Double> distanceToCentroids = new LinkedList<Double>();
-        for (Vector<Double> centroid : centroids) {
-            if (doc.size() != centroid.size()) {
+        int closestCentroid = -1;
+        double lastDistance = 0.0;
+
+        for (int centroid : centroids.keySet()) {
+            if (doc.size() != centroids.get(centroid).size()) {
                 throw new RuntimeException("TextDocument and centroid vectors are not the same size. Some issue has happened" +
                         "during creation of the vectors.");
             }
+
+
             double distance = 0.0;
+
+            Vector<Double> centroidVec = centroids.get(centroid);
             for (int i = 0; i < doc.size(); i++) {
 
-                distance += Math.pow((doc.get(i) - centroid.get(i)), 2);
-
-
+                distance += Math.pow((doc.get(i) - centroidVec.get(i)), 2);
             }
 
             distance = Math.sqrt(distance);
-            distanceToCentroids.add(distance);
+            // calculate as we go the closest centroid to our document.
+            if (closestCentroid == -1) {
+                closestCentroid = centroid;
+                lastDistance = distance;
+            } else if (distance < lastDistance) {
+                closestCentroid = centroid;
+                lastDistance = distance;
+            }
+
         }
-
-        Collections.sort(distanceToCentroids);
-
         // grab the closest centroid and return its id.
-
-
-        return -1;
+        return closestCentroid;
     }
+
 
     @Override
     public int classify(TextDocument document) {
