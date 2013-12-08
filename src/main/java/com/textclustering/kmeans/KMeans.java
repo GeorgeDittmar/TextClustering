@@ -2,6 +2,7 @@ package com.textclustering.kmeans;
 
 import com.data.Corpus;
 import com.data.Document.TextDocument;
+import com.sun.istack.internal.NotNull;
 import com.textclustering.IClusterAlg;
 
 import java.util.*;
@@ -15,13 +16,13 @@ import java.util.*;
  */
 public class KMeans implements IClusterAlg {
 
-    final int m_numClusters;
-    private final Map<Integer, List<TextDocument>> clusters;
-    private final Map<Integer, Vector<Double>> clusterCenters;
-    private final Corpus corpus;
+    int m_numClusters;
+    private Map<Integer, List<TextDocument>> clusters;
+    private Map<Integer, Vector<Double>> clusterCenters;
+    private Corpus corpus;
 
 
-    public KMeans(int m_numClusters, Corpus corpus) {
+    public KMeans(int m_numClusters, @NotNull Corpus corpus) {
         this.m_numClusters = m_numClusters;
         this.clusters = new HashMap<Integer, List<TextDocument>>();
         this.clusterCenters = new HashMap<Integer, Vector<Double>>();
@@ -41,6 +42,14 @@ public class KMeans implements IClusterAlg {
         double max = Collections.max(minMaxList);
 
         // generate the
+    }
+
+    public void setNumberClusters(int num){
+        this.m_numClusters = num;
+    }
+
+    public void setCorpus(Corpus corpus){
+
     }
 
     /**
