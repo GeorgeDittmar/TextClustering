@@ -32,4 +32,9 @@ public class Knn implements IClusterAlg {
     public void loadDocumentVectors(List<Vector<Double>> documentSpace) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public void loadDocuments(List<TextDocument> documents) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

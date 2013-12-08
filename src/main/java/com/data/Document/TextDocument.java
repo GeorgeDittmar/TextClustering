@@ -13,6 +13,7 @@ import java.util.*;
  *
  */
 public class TextDocument implements IDocument {
+
     // We use a treemap to keep the keys in sorted order.
     private Map<String,Double> termWeights = new TreeMap<String, Double>();
     private String rawDoc = "";
@@ -49,5 +50,7 @@ public class TextDocument implements IDocument {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-
+    public Set<String> getTerms(){
+        return termWeights.keySet();
+    }
 }

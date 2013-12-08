@@ -1,5 +1,6 @@
 package com.textclustering.kmeans;
 
+import com.data.Corpus;
 import com.data.Document.TextDocument;
 import com.textclustering.IClusterAlg;
 
@@ -16,12 +17,30 @@ public class KMeans implements IClusterAlg {
 
     final int m_numClusters;
     private final Map<Integer, List<TextDocument>> clusters;
-    private final Map<Integer, Vector<Double>> clusterCenter;
+    private final Map<Integer, Vector<Double>> clusterCenters;
+    private final Corpus corpus;
 
-    public KMeans(int m_numClusters) {
+
+    public KMeans(int m_numClusters, Corpus corpus) {
         this.m_numClusters = m_numClusters;
         this.clusters = new HashMap<Integer, List<TextDocument>>();
-        this.clusterCenter = new HashMap<Integer, Vector<Double>>();
+        this.clusterCenters = new HashMap<Integer, Vector<Double>>();
+        this.corpus = corpus;
+
+        // generate the random clusters once we get the corpus.
+        LinkedList<Double> minMaxList = new LinkedList<Double>();
+        for(String classLabel: corpus.getCorpus().keySet()){
+            for(TextDocument tmp: corpus.getCorpus().get(classLabel)){
+                // grab the min and max feature value from each document.
+                minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
+                minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
+            }
+        }
+
+        double min = Collections.min(minMaxList);
+        double max = Collections.max(minMaxList);
+
+        // generate the
     }
 
     /**
@@ -31,18 +50,39 @@ public class KMeans implements IClusterAlg {
 
         for (TextDocument document : data) {
             Vector<Double> documentVector = document.getVectorRepresentation();
-            calc_dist(documentVector, clusterCenter);
+            calc_dist(documentVector, clusterCenters);
         }
+    }
+
+    /**
+     * This function runs the kmeans algorithm to learn the cluster centers.
+     */
+    public void learn(){
+
     }
 
     /**
      * Generate a random cluster center given the dimensionality of the data as a parameter. Each randomly generated cluster center
      * wll be derived by looking at the overall statistics of the documents loaded into the corpus so as to not create a random center that is not actually withing
-     * the document space.
+     * the document space. Simple case can just look at the value of the largest feature and the smallest feature so as to generates an n-dimensional vector with each
+     * feature x_i is min_att <= x_i <= max_att.
      */
-    public Vector<Double> generateClusters(long dim) {
+    public void generateClusters(long dim, double min, double max) {
 
-        return null;
+        Random r = new Random();
+
+        for (int i = 0; i < m_numClusters; i++) {
+
+            Vector<Double> generatedCluster = new Vector<Double>();
+
+            for (int j = 0; j < dim; j++) {
+                double randFeatureVal = min + (max - min) * r.nextDouble();
+                generatedCluster.add(randFeatureVal);
+            }
+
+            clusterCenters.put(i, generatedCluster);
+        }
+
     }
 
 
@@ -93,6 +133,8 @@ public class KMeans implements IClusterAlg {
 
     @Override
     public int classify(TextDocument document) {
+
+        // given a single document to classify against our corpus
         return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -103,6 +145,11 @@ public class KMeans implements IClusterAlg {
 
     @Override
     public void loadDocumentVectors(List<Vector<Double>> documentSpace) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void loadDocuments(List<TextDocument> documents) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }
