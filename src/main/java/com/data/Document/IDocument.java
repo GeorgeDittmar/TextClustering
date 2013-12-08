@@ -13,7 +13,8 @@ import java.util.Vector;
 public interface IDocument {
 
 
-    public void setDocument(List<List<String>> document);
+    public void setProcessedDocument(List<List<String>> document);
+    public void setOriginalDocumentString(String document);
     public String getRawDocument();
     public void getProcessedDoc();
     public Vector<Double> getVectorRepresentation();
