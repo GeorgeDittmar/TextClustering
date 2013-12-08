@@ -9,4 +9,12 @@ package com.textclustering.eval;
  */
 public class EvaluateClusters {
 
+    public void cohesion(){
+
+    }
+
+    public void seperation(){
+
+    }
+
 }

@@ -5,7 +5,7 @@ import com.textclustering.kmeans.KMeans;
 import com.textclustering.knn.Knn;
 
 /**
- * Created with IntelliJ IDEA.
+ * Factory class to initialize a clustering algorithm to be used.
  * User: george
  * Date: 12/7/13
  * Time: 11:48 PM
