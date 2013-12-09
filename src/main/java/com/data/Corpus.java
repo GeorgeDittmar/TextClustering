@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class to hold a large number of documents along with their associated classification mapping if known.
+ * Class to hold a large number of documents along with their associated classification mappings.
  * User: george
  * Date: 12/2/13
  * Time: 7:08 PM
@@ -20,7 +20,6 @@ public class Corpus {
     private Map<String, Integer> allWordsInCorpus = new HashMap<String, Integer>();
     private Map<String, List<TextDocument>> corpus = new HashMap<String, List<TextDocument>>();
 
-    // TODO - possibly add seperate maps for training and testing sets in the corpus. Currently everything is just assuming one large set.
     /**
      * return the training corpus
      * @return
