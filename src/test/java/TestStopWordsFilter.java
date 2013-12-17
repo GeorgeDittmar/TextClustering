@@ -1,15 +1,6 @@
-import com.data.DataLoader;
-import com.textclustering.processors.StopWordsFilter;
-import junit.framework.Assert;
-import org.apache.commons.io.FileUtils;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import com.data.processors.StopWordsFilter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

@@ -16,7 +16,7 @@ public interface IDocument {
     public void setProcessedDocument(List<List<String>> document);
     public void setOriginalDocumentString(String document);
     public String getRawDocument();
-    public void getProcessedDoc();
+    public List<List<String>> getProcessedDoc();
     public Vector<Double> getVectorRepresentation();
     public void setVectorizedDocument(Vector<Double> document);
 }

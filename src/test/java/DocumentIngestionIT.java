@@ -1,7 +1,7 @@
 import com.data.DataLoader;
-import com.textclustering.processors.INLPProcessor;
-import com.textclustering.processors.OpenNLPProcessor;
-import com.textclustering.processors.StopWordsFilter;
+import com.data.processors.INLPProcessor;
+import com.data.processors.OpenNLPProcessor;
+import com.data.processors.StopWordsFilter;
 import junit.framework.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

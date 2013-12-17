@@ -22,22 +22,22 @@ public class TextDocument implements IDocument {
 
     @Override
     public void setProcessedDocument(List<List<String>> document) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        processedDoc = document;
     }
 
     @Override
     public void setOriginalDocumentString(String document) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        rawDoc = document;
     }
 
     @Override
     public String getRawDocument() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return rawDoc;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void getProcessedDoc() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public List<List<String>> getProcessedDoc() {
+        return processedDoc;
     }
 
     @Override

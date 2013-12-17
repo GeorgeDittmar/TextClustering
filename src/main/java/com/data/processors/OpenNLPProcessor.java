@@ -1,7 +1,5 @@
-package com.textclustering.processors;
+package com.data.processors;
 
-import edu.stanford.nlp.ling.Document;
-import opennlp.tools.sentdetect.SentenceDetector;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 import opennlp.tools.tokenize.Tokenizer;
@@ -57,12 +55,24 @@ public class OpenNLPProcessor implements INLPProcessor {
      */
     @Override
     public List<String[]> processDocument(File document) throws IOException {
-        List<String[]> tokenizedDocument = new LinkedList<String[]>();
+
 
         //read in the document as a utf-8 string and then process the string through OpenNLP by using the sentence detector and
         // the tokenizer to build a list of string arrays.
         String documentString = FileUtils.readFileToString(document, "utf-8");
 
+        return process(documentString);
+    }
+
+    //TODO- implement the processDocument method for strings
+    @Override
+    public List<String[]> processDocument(String documentString) {
+        return process(documentString);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+
+    private List<String[]> process(String documentString){
+        List<String[]> tokenizedDocument = new LinkedList<String[]>();
         String[] sentences = sentenceDetectorME.sentDetect(documentString);
         for(String sentence: sentences){
             // tokenize this sentence and add to our accumulation list.
@@ -70,12 +80,5 @@ public class OpenNLPProcessor implements INLPProcessor {
         }
         return tokenizedDocument;
     }
-
-    //TODO- implement the processDocument method for strings
-    @Override
-    public List<String[]> processDocument(String document) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
 
 }

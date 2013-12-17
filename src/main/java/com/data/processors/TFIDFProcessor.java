@@ -1,4 +1,4 @@
-package com.textclustering.processors;
+package com.data.processors;
 
 import com.data.Document.TextDocument;
 

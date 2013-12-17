@@ -1,5 +1,5 @@
-import com.textclustering.processors.INLPProcessor;
-import com.textclustering.processors.OpenNLPProcessor;
+import com.data.processors.INLPProcessor;
+import com.data.processors.OpenNLPProcessor;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -20,7 +20,8 @@ import static org.testng.Assert.fail;
 public class TestOpenNLPProcessor {
     private INLPProcessor processor = new OpenNLPProcessor();
 
-    @Test void testInit() {
+    @Test
+    void testInit() {
         try {
             processor.init();
         } catch (IOException e) {
