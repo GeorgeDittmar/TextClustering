@@ -16,27 +16,27 @@ import java.util.List;
 public class NLPProcessorExample {
 
     public static void main(String[] args) throws FileNotFoundException {
+        //Call an NLPProcessorFactory and give it the processor class you wish to create.
         INLPProcessor processor = NLPProcessorFactory.initNLPProcessor(OpenNLPProcessor.class);
 
         if( processor == null){
             throw new RuntimeException("NLP processor was not initialized.");
         }
 
-        // Initialize the NLP processor
+        // Initialize the NLP processor to setup its tokenization models
         try {
             processor.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        // once the processor is initialized lets give it some document to process.
+        // Once the processor is initialized lets give it some document to process.
+        // In this example just a simple string that we will tokenize.
 
         List<String[]> processed = processor.processDocument("Bob said hi. Hi bob!");
         System.out.println("Number of sentences: "+processed.size());
 
-
-        // now filter stopwords out of the sentence.
+        // Create a stopword filter object so that we may remove common terms from the tokenized input.
         StopWordsFilter filter = new StopWordsFilter();
         filter.loadStopWords(new File("./src/resources/stopwords.txt"));
 
@@ -51,5 +51,6 @@ public class NLPProcessorExample {
             }
             System.out.println();
         }
+
     }
 }
