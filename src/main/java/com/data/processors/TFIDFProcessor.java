@@ -18,7 +18,8 @@ import java.util.Vector;
 public class TFIDFProcessor implements IFeatureProcessor {
 
     /**
-     * Private method to calculate the tfidf score of a term in a document.
+     * Private method to calculate the tfidf score of a term in a document. This is called by the
+     * process methods and can generally be easily swapped out for other feature weights.
      * @param document
      * @param corpus
      */

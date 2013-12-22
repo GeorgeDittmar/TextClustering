@@ -115,7 +115,6 @@ public class KMeans implements IClusterAlg {
                         "during creation of the vectors.");
             }
 
-
             double distance = 0.0;
 
             Vector<Double> centroidVec = centroids.get(centroid);

@@ -64,7 +64,7 @@ public class OpenNLPProcessor implements INLPProcessor {
         return process(documentString);
     }
 
-    //TODO- implement the processDocument method for strings
+
     @Override
     public List<String[]> processDocument(String documentString) {
         return process(documentString);  //To change body of implemented methods use File | Settings | File Templates.
