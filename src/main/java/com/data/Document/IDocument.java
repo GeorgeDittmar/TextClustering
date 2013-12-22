@@ -1,5 +1,7 @@
 package com.data.Document;
 
+import com.data.Corpus;
+
 import java.util.List;
 import java.util.Vector;
 
@@ -17,6 +19,6 @@ public interface IDocument {
     public void setOriginalDocumentString(String document);
     public String getRawDocument();
     public List<List<String>> getProcessedDoc();
-    public Vector<Double> getVectorRepresentation();
+    public Vector<Double> getVectorRepresentation(Corpus copus);
     public void setVectorizedDocument(Vector<Double> document);
 }

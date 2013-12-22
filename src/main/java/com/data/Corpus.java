@@ -1,6 +1,7 @@
 package com.data;
 
 import com.data.Document.TextDocument;
+import com.data.processors.IFeatureProcessor;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -20,8 +21,13 @@ public class Corpus {
     private Map<String, Integer> allWordsInCorpus = new HashMap<String, Integer>();
     private Map<String, List<TextDocument>> corpus = new HashMap<String, List<TextDocument>>();
 
+    // cir
+    private IFeatureProcessor featureProcessor;
+    private int size;
+
     /**
      * return the training corpus
+     *
      * @return
      */
     public Map<String, List<TextDocument>> getCorpus() {
@@ -41,8 +47,9 @@ public class Corpus {
         }
 
         corpus.get(classLable).add(document);
-
+        size++;
         // add the words in this document to the allWordsInCorpus map and increment the document counts
+
         for (String term : document.getTerms()) {
 
             if (!allWordsInCorpus.containsKey(term)) {
@@ -55,10 +62,30 @@ public class Corpus {
     }
 
     public void addDocuments(String classLabel, List<TextDocument> documents) {
-        if(corpus.containsKey(classLabel)){
+        if (corpus.containsKey(classLabel)) {
             corpus.get(classLabel).addAll(documents);
-        }else if(!corpus.containsKey(classLabel)){
-            corpus.put(classLabel,documents);
+
+        } else if (!corpus.containsKey(classLabel)) {
+            corpus.put(classLabel, documents);
+        }
+        addTermDocumentCounts(documents);
+        size += documents.size();
+    }
+
+    /**
+     * Count if a term has been found in a given document or not.
+     *
+     * @param documents
+     */
+    private void addTermDocumentCounts(List<TextDocument> documents) {
+        for (TextDocument document : documents) {
+            for (String term : document.getTerms()) {
+                if (allWordsInCorpus.containsKey(term)) {
+                    allWordsInCorpus.put(term, allWordsInCorpus.get(term) + 1);
+                } else {
+                    allWordsInCorpus.put(term, 0);
+                }
+            }
         }
     }
 
@@ -67,7 +94,30 @@ public class Corpus {
         return allWordsInCorpus.containsKey(term);
     }
 
-    public int getTermCorpusTermValue(String term) {
+    /**
+     * returns the number of documents a given term resides in.
+     *
+     * @param term
+     * @return
+     */
+    public int getTermCount(String term) {
         return allWordsInCorpus.get(term);
+    }
+
+    public int getNumberOfTerms() {
+        return allWordsInCorpus.keySet().size();
+    }
+
+    /**
+     * Get all terms that have been found inside this corpus.
+     *
+     * @return
+     */
+    public Map<String, Integer> getAllTerms() {
+        return allWordsInCorpus;
+    }
+
+    public int size() {
+        return size;
     }
 }

@@ -27,29 +27,10 @@ public class KMeans implements IClusterAlg {
         this.clusters = new HashMap<Integer, List<TextDocument>>();
         this.clusterCenters = new HashMap<Integer, Vector<Double>>();
         this.corpus = corpus;
-
-        // generate the random clusters once we get the corpus.
-        LinkedList<Double> minMaxList = new LinkedList<Double>();
-        for(String classLabel: corpus.getCorpus().keySet()){
-            for(TextDocument tmp: corpus.getCorpus().get(classLabel)){
-                // grab the min and max feature value from each document.
-                minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
-                minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
-            }
-        }
-
-        double min = Collections.min(minMaxList);
-        double max = Collections.max(minMaxList);
-
-        // generate the
     }
 
-    public void setNumberClusters(int num){
+    public void setNumberClusters(int num) {
         this.m_numClusters = num;
-    }
-
-    public void setCorpus(Corpus corpus){
-
     }
 
     /**
@@ -64,9 +45,28 @@ public class KMeans implements IClusterAlg {
     }
 
     /**
-     * This function runs the kmeans algorithm to learn the cluster centers.
+     * This function runs the kmeans algorithm to learn the cluster centers. This is an iterative algorithm that will
+     * learn the best fit cluster centers for a given corpus of documents.
      */
-    public void learn(){
+    public void learn(Corpus corpus) {
+
+        // generate the random clusters once we get the corpus.
+        LinkedList<Double> minMaxList = new LinkedList<Double>();
+        for (String classLabel : corpus.getCorpus().keySet()) {
+            for (TextDocument tmp : corpus.getCorpus().get(classLabel)) {
+                // grab the min and max feature value from each document.
+                minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
+                minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
+            }
+        }
+
+        double min = Collections.min(minMaxList);
+        double max = Collections.max(minMaxList);
+
+        // generate the random cluster centers that will start the learning process.
+        for(int i=0; i< m_numClusters; i++){
+
+        }
 
     }
 
@@ -135,6 +135,7 @@ public class KMeans implements IClusterAlg {
             }
 
         }
+
         // grab the closest centroid and return its id.
         return closestCentroid;
     }
@@ -143,8 +144,8 @@ public class KMeans implements IClusterAlg {
     @Override
     public int classify(TextDocument document) {
 
-        // given a single document to classify against our corpus
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        // given a single document to classify against our document corpus
+        return 0;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.data.Document;
 
+import com.data.Corpus;
+import com.data.processors.IFeatureProcessor;
+
 import java.util.*;
 
 /**
@@ -16,6 +19,7 @@ public class TextDocument implements IDocument {
 
     // We use a treemap to keep the keys in sorted order.
     private Map<String,Double> termWeights = new TreeMap<String, Double>();
+    private Map<String,Integer> termCounts = new TreeMap<String,Integer>();
     private String rawDoc = "";
     private List<List<String>> processedDoc;
     private Vector<Double> vectorDoc;
@@ -41,7 +45,8 @@ public class TextDocument implements IDocument {
     }
 
     @Override
-    public Vector<Double> getVectorRepresentation() {
+    public Vector<Double> getVectorRepresentation(Corpus corpus) {
+
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -53,4 +58,25 @@ public class TextDocument implements IDocument {
     public Set<String> getTerms(){
         return termWeights.keySet();
     }
+
+    public Map<String,Double> getTermWeights(){
+        return termWeights;
+    }
+
+    public Map<String,Integer> getTermCounts(){
+        return termCounts;
+    }
+
+    public boolean containsTerm(String term){
+        return termCounts.containsKey(term);
+    }
+
+    public double getTermCount(String term){
+        return termCounts.get(term);
+    }
+
+    public double getTermFrequency(String term){
+        return termWeights.get(term);
+    }
+
 }
