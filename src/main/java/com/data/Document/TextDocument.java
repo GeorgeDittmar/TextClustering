@@ -1,8 +1,5 @@
 package com.data.Document;
 
-import com.data.Corpus;
-import com.data.processors.IFeatureProcessor;
-
 import java.util.*;
 
 /**
@@ -18,7 +15,7 @@ import java.util.*;
 public class TextDocument implements IDocument {
 
     // We use a treemap to keep the keys in sorted order.
-    private Map<String,Double> termWeights = new TreeMap<String, Double>();
+    private Map<String,Double> termFrequencies = new TreeMap<String, Double>();
     private Map<String,Integer> termCounts = new TreeMap<String,Integer>();
     private String rawDoc = "";
     private List<List<String>> processedDoc;
@@ -36,7 +33,7 @@ public class TextDocument implements IDocument {
 
     @Override
     public String getRawDocument() {
-        return rawDoc;  //To change body of implemented methods use File | Settings | File Templates.
+        return rawDoc;
     }
 
     @Override
@@ -45,22 +42,22 @@ public class TextDocument implements IDocument {
     }
 
     @Override
-    public Vector<Double> getVectorRepresentation(Corpus corpus) {
+    public Vector<Double> getVectorRepresentation() {
 
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return vectorDoc;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void setVectorizedDocument(Vector<Double> document) {
-        //To change body of implemented methods use File | Settings | File Templates.
+       vectorDoc = document;
     }
 
     public Set<String> getTerms(){
-        return termWeights.keySet();
+        return termFrequencies.keySet();
     }
 
-    public Map<String,Double> getTermWeights(){
-        return termWeights;
+    public Map<String,Double> getTermFrequencies(){
+        return termFrequencies;
     }
 
     public Map<String,Integer> getTermCounts(){
@@ -76,7 +73,7 @@ public class TextDocument implements IDocument {
     }
 
     public double getTermFrequency(String term){
-        return termWeights.get(term);
+        return termFrequencies.get(term);
     }
 
 }

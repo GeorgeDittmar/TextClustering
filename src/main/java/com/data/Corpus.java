@@ -3,10 +3,7 @@ package com.data;
 import com.data.Document.TextDocument;
 import com.data.processors.IFeatureProcessor;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class to hold a large number of documents along with their associated classification mappings.
@@ -18,10 +15,9 @@ import java.util.Map;
 public class Corpus {
 
     // keep a mapping of all terms found in the corpus along with the number of times that term has appeared in other documents.
-    private Map<String, Integer> allWordsInCorpus = new HashMap<String, Integer>();
+    private Map<String, Integer> allWordsInCorpus = new TreeMap<String, Integer>();
     private Map<String, List<TextDocument>> corpus = new HashMap<String, List<TextDocument>>();
 
-    // cir
     private IFeatureProcessor featureProcessor;
     private int size;
 
@@ -106,6 +102,10 @@ public class Corpus {
 
     public int getNumberOfTerms() {
         return allWordsInCorpus.keySet().size();
+    }
+
+    public void setFeatureProcessor(IFeatureProcessor processor) {
+        this.featureProcessor = processor;
     }
 
     /**

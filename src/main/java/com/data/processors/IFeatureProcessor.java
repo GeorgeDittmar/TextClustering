@@ -13,6 +13,12 @@ import java.util.Map;
  * Created by george on 12/21/13.
  */
 public interface  IFeatureProcessor {
-    public Map<String, Double> process(TextDocument document, Corpus corpus);
-    public Map<String,Double> process(List<TextDocument> documentSet,Corpus corpus);
+    /**
+     * Process takes a document and a corpus and calculates the features for a given document.
+     * @param document
+     * @param corpus
+     * @return
+     */
+    public void process(TextDocument document, Corpus corpus);
+    public void process(List<TextDocument> documentSet,Corpus corpus);
 }
