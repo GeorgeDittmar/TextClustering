@@ -120,4 +120,14 @@ public class Corpus {
     public int size() {
         return size;
     }
+
+    /**
+     * This method is called everytime new feature weights on the corpus need to be calculated, such as when new training examples or classes are added.
+     * This will call the IFeatureProcessor used by the corpus.
+     */
+    public void calculateFeatureWeights(){
+        for(String label: corpus.keySet()){
+            featureProcessor.process(corpus.get(label),this);
+        }
+    }
 }
