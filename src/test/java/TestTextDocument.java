@@ -55,6 +55,7 @@ public class TestTextDocument {
      */
     @Test
     public void testProcessedDocument() throws IOException {
+
         // Process one of the documents through the nlp processor
         String rawDoc = FileUtils.readFileToString(data.get("class2").get(0), "utf-8");
         document.setOriginalDocumentString(rawDoc);
