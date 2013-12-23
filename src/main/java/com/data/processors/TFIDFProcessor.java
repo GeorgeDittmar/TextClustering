@@ -25,6 +25,7 @@ public class TFIDFProcessor implements IFeatureProcessor {
      */
     private void tfidf(TextDocument document,Corpus corpus){
         Vector<Double> documentVector = new Vector<Double>();
+
         // loop through each term found in the corpus and compare if this term was found in the
         for(String term: corpus.getAllTerms().keySet()){
             if(document.containsTerm(term)){

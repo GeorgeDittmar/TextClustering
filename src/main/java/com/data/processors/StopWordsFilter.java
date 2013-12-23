@@ -52,8 +52,8 @@ public class StopWordsFilter {
 
             List<String> processedSentence = new LinkedList<String>();
             for(String word: sentence){
-                if(!m_stopWords.contains(word.toLowerCase())){
-                    processedSentence.add(word);
+                if(!m_stopWords.contains(word.toLowerCase()) && word.length() > 1){
+                    processedSentence.add(word.toLowerCase());
                 }
             }
             processedDoc.add(processedSentence);

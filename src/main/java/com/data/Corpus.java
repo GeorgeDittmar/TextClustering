@@ -57,6 +57,11 @@ public class Corpus {
 
     }
 
+    /**
+     * Adds a list of documents for a given class to the corpus.
+     * @param classLabel
+     * @param documents
+     */
     public void addDocuments(String classLabel, List<TextDocument> documents) {
         if (corpus.containsKey(classLabel)) {
             corpus.get(classLabel).addAll(documents);
@@ -123,7 +128,7 @@ public class Corpus {
 
     /**
      * This method is called everytime new feature weights on the corpus need to be calculated, such as when new training examples or classes are added.
-     * This will call the IFeatureProcessor used by the corpus.
+     * This will call the IFeatureProcessor used by the corpus and update each documents vector representation to show the new weights.
      */
     public void calculateFeatureWeights(){
         for(String label: corpus.keySet()){
