@@ -80,8 +80,4 @@ public class TestTextDocument {
         Assert.assertEquals(document.getTermFrequency("cat"),(double)2/(double)7);
     }
 
-    @Test
-    public void testDocumentTermFrequencies(){
-
-    }
 }
