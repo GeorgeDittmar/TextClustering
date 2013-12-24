@@ -26,9 +26,13 @@ public class StopWordsFilter {
      * Constructor takes a file that is a list of stopwords to be read into the set.
      * @param path
      */
-    public void StopWordsFilter(File path) throws FileNotFoundException {
+    public StopWordsFilter(File path) throws FileNotFoundException {
         m_stopWordsFile = path;
         loadStopWords(path);
+    }
+
+    public StopWordsFilter(){
+
     }
 
     public void loadStopWords(File path) throws FileNotFoundException {

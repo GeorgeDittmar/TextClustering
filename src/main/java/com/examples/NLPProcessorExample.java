@@ -37,8 +37,8 @@ public class NLPProcessorExample {
         System.out.println("Number of sentences: "+processed.size());
 
         // Create a stopword filter object so that we may remove common terms from the tokenized input.
-        StopWordsFilter filter = new StopWordsFilter();
-        filter.loadStopWords(new File("./src/resources/stopwords.txt"));
+        StopWordsFilter filter = new StopWordsFilter(new File("./src/resources/stopwords.txt"));
+
 
         List<List<String>> filteredDoc = filter.filterStopWords(processed);
 
