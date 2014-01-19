@@ -44,6 +44,10 @@ public class KMeans implements IClusterAlg {
         }
     }
 
+    public void setNumClusters(int clusters){
+        m_numClusters = clusters;
+    }
+
     /**
      * This function runs the kmeans algorithm to learn the cluster centers. This is an iterative algorithm that will
      * learn the best fit cluster centers for a given corpus of documents.
@@ -55,8 +59,11 @@ public class KMeans implements IClusterAlg {
         for (String classLabel : corpus.getCorpus().keySet()) {
             for (TextDocument tmp : corpus.getCorpus().get(classLabel)) {
                 // grab the min and max feature value from each document.
-                minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
-                minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
+                if(tmp.getVectorRepresentation().size() > 0){
+                    minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
+                    minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
+
+                }
             }
         }
 
@@ -65,7 +72,7 @@ public class KMeans implements IClusterAlg {
 
         // generate the random cluster centers that will start the learning process.
         for(int i=0; i< m_numClusters; i++){
-
+            generateClusters(corpus.getNumberOfTerms(),min,max);
         }
 
     }
@@ -157,8 +164,4 @@ public class KMeans implements IClusterAlg {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public void loadDocuments(List<TextDocument> documents) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

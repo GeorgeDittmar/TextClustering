@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Created with IntelliJ IDEA.
+ * Interface for clustering algorithms.
  * User: george
  * Date: 11/30/13
  * Time: 2:23 PM
@@ -33,8 +33,4 @@ public class Knn implements IClusterAlg {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public void loadDocuments(List<TextDocument> documents) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
 }

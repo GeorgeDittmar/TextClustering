@@ -74,7 +74,7 @@ public class TextDocument implements IDocument {
     @Override
     public Vector<Double> getVectorRepresentation() {
 
-        return vectorDoc;  //To change body of implemented methods use File | Settings | File Templates.
+        return vectorDoc;
     }
 
     @Override

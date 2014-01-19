@@ -17,6 +17,5 @@ public interface IClusterAlg {
     public int classify(TextDocument document);
     public int getNumberOfDocs();
     public void loadDocumentVectors(List<Vector<Double>> documentSpace);
-    public void loadDocuments(List<TextDocument> documents);
 
 }

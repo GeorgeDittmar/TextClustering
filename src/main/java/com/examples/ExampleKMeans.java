@@ -61,5 +61,7 @@ public class ExampleKMeans {
         // now call the KMeans object
         KMeans kmeans = new KMeans(2,corpus);
 
+        kmeans.learn(corpus);
+
     }
 }
