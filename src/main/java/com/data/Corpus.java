@@ -17,7 +17,7 @@ public class Corpus {
     // keep a mapping of all terms found in the corpus along with the number of times that term has appeared in other documents.
     private Map<String, Integer> allWordsInCorpus = new TreeMap<String, Integer>();
     private Map<String, List<TextDocument>> corpus = new HashMap<String, List<TextDocument>>();
-
+    private List<String> termList = new LinkedList<String>();
     private IFeatureProcessor featureProcessor;
     private int size;
 
@@ -49,6 +49,7 @@ public class Corpus {
         for (String term : document.getTerms()) {
 
             if (!allWordsInCorpus.containsKey(term)) {
+                termList.add(term);
                 allWordsInCorpus.put(term, 0);
             }
 
@@ -118,8 +119,8 @@ public class Corpus {
      *
      * @return
      */
-    public Map<String, Integer> getAllTerms() {
-        return allWordsInCorpus;
+    public List<String> getAllTerms() {
+        return termList;
     }
 
     public int size() {

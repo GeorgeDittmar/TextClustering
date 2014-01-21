@@ -39,8 +39,10 @@ public class KMeans implements IClusterAlg {
     public void classifyData(List<TextDocument> data) throws Exception {
 
         for (TextDocument document : data) {
-            Vector<Double> documentVector = document.getVectorRepresentation();
-            calc_dist(documentVector, clusterCenters);
+            if(document.getVectorRepresentation().size() != 0){
+                Vector<Double> documentVector = document.getVectorRepresentation();
+                calc_dist(documentVector, clusterCenters);
+            }
         }
     }
 
@@ -48,7 +50,7 @@ public class KMeans implements IClusterAlg {
      * This function runs the kmeans algorithm to learn the cluster centers. This is an iterative algorithm that will
      * learn the best fit cluster centers for a given corpus of documents.
      */
-    public void learn(Corpus corpus) {
+    public void learn() {
 
         // generate the random clusters once we get the corpus.
         LinkedList<Double> minMaxList = new LinkedList<Double>();
@@ -65,7 +67,7 @@ public class KMeans implements IClusterAlg {
 
         // generate the random cluster centers that will start the learning process.
         for(int i=0; i< m_numClusters; i++){
-
+            
         }
 
     }
