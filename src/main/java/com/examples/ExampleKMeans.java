@@ -61,7 +61,10 @@ public class ExampleKMeans {
         // now call the KMeans object
         KMeans kmeans = new KMeans(2,corpus);
 
-        kmeans.learn(corpus);
+        // learns the cluster centers given the training data inside the corpus object.
+        kmeans.learn();
+
+
 
     }
 }

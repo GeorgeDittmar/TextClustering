@@ -1,7 +1,7 @@
 package com.data;
 
 /**
- * Created by george on 1/18/14.
+ * DataResultSet stores relevant information on the results of algorithms in the framework.
  */
 public class DataResultSet {
 }

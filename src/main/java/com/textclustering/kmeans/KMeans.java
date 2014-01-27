@@ -62,6 +62,7 @@ public class KMeans implements IClusterAlg {
             for (TextDocument tmp : corpus.getCorpus().get(classLabel)) {
                 // grab the min and max feature value from each document.
                 if(tmp.getVectorRepresentation().size() > 0){
+
                     minMaxList.add(Collections.max(tmp.getVectorRepresentation()));
                     minMaxList.add(Collections.min(tmp.getVectorRepresentation()));
 
@@ -167,7 +168,7 @@ public class KMeans implements IClusterAlg {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
+
     public void loadDocuments(List<TextDocument> documents) {
         //To change body of implemented methods use File | Settings | File Templates.
     }

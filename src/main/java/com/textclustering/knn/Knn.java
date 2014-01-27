@@ -1,13 +1,15 @@
 package com.textclustering.knn;
 
+import com.data.Corpus;
 import com.data.Document.TextDocument;
+import com.sun.istack.internal.NotNull;
 import com.textclustering.IClusterAlg;
 
 import java.util.List;
 import java.util.Vector;
 
 /**
- * Interface for clustering algorithms.
+ * Implementations of the IClusterAlg interface to build the Knn algorithm.
  * User: george
  * Date: 11/30/13
  * Time: 2:23 PM
@@ -15,17 +17,26 @@ import java.util.Vector;
  */
 public class Knn implements IClusterAlg {
 
-    private int m_numberOfDocs = 0;
+    private Corpus corpus;
 
+    public void Knn(@NotNull Corpus corpus){
+        this.corpus = corpus;
+    }
 
+    /**
+     * Classifies a given document against the entire training corpus using the class
+     * labels of the k nearest neighbors of the new input document.
+     * @param document
+     * @return
+     */
     @Override
     public int classify(TextDocument document) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return 0;
     }
 
     @Override
     public int getNumberOfDocs() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+        return corpus.size();
     }
 
     @Override
