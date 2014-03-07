@@ -1,7 +1,7 @@
 package com.data;
 
 /**
- * Created by george on 1/18/14.
+ * The DataResultSet is meant for reporting of information from documents processed by the clustering algorithms.
  */
 public class DataResultSet {
 }
