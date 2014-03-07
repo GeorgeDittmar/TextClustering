@@ -4,9 +4,7 @@ import com.data.Corpus;
 import com.data.Document.IDocument;
 import com.data.Document.TextDocument;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * the TFIDF processor class's role is to calculate term frequency statistics for a given corpus of documents.
@@ -27,16 +25,20 @@ public class TFIDFProcessor implements IFeatureProcessor {
         Vector<Double> documentVector = new Vector<Double>();
 
         // loop through each term found in the corpus and compare if this term was found in the
-        for(String term: corpus.getAllTerms().keySet()){
+        for(String term: corpus.getAllTerms()){
             if(document.containsTerm(term)){
                 // grab its term frequency for that document and calculate the inverse document frequency from the corpus
                 double freq = document.getTermFrequency(term);
                 double idf = Math.log((float)corpus.size() / (float)corpus.getTermCount(term));
                 double tfidf = freq*idf;
                 documentVector.add(tfidf);
+            }else{
+                // add an empty value in the vector.
+                documentVector.add(0.0);
             }
         }
         // set the document object's vector representation
+
         document.setVectorizedDocument(documentVector);
     }
 
