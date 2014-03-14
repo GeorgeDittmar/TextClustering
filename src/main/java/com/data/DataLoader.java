@@ -17,6 +17,12 @@ import java.util.Map;
  */
 public class DataLoader {
 
+    /**
+     * The data loader reads in a directory that contains folders of each class type and returns
+     * a map of class label to documents in that class.
+     * @param dir
+     * @return
+     */
     public static Map<String,List<File>> loadDataSet(File dir){
         File[] fList = dir.listFiles();
         Map<String,List<File>> dataset = new HashMap<String,List<File>>();
